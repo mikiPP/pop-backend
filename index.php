@@ -13,19 +13,15 @@ $db = $database->getConnection();
 // pass connection to objects
 $diary = new Diary($db);
 
-$json = json_encode(file_get_contents(JSON_ROUTE));
-$json = json_decode(trim($json), true);
-
-
-// $json = rtrim($json, "\0");
-// $json = json_decode($json, true);
+$json = file_get_contents(JSON_ROUTE);
+$json = json_decode($json, true);
 
 foreach ($json as $day) {
-     /**
-      * $diary->decription = $day->eventos 
-      * $diary->pulpo = $day->pulpo 
-      * $diary->insert();  
-      */
+     
+       $diary->decription = $day["eventos"]; 
+       $diary->pulpo = $day["pulpo"];
+       $diary->insert();  
+     
 }
 
 
